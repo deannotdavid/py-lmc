@@ -1,0 +1,69 @@
+RESET    LDA ZERO
+         STA NUM1
+         STA NUM2
+         STA ANS
+START    INP 
+         STA NUM1
+         INP 
+         STA NUM2
+         INP 
+         SUB ONE
+         BRZ ADDITION
+         SUB ONE
+         BRZ SUBTRACT
+         SUB ONE
+         BRZ MULTIPLY
+         SUB ONE
+         BRZ DIV
+         SUB ONE
+         BRZ MOD
+         HLT 
+ADDITION LDA NUM1
+         ADD NUM2
+         OUT 
+         BRA ENDING
+SUBTRACT LDA NUM1
+         SUB NUM2
+         OUT 
+         BRA ENDING
+MULTIPLY LDA ANS
+         ADD NUM1
+         STA ANS
+         LDA NUM2
+         SUB ONE
+         STA NUM2
+         BRP MULTIPLY
+         LDA ANS
+         SUB NUM1
+         OUT 
+         BRA ENDING
+DIV      LDA NUM1
+         SUB NUM2
+         STA NUM1
+         LDA ANS
+         ADD ONE
+         STA ANS
+         LDA NUM1
+         BRP DIV
+         LDA ANS
+         SUB ONE
+         OUT 
+         BRA ENDING
+MOD      LDA NUM1
+         SUB NUM2
+         STA NUM1
+         BRP MOD
+         ADD NUM2
+         OUT 
+ENDING   INP 
+         OUT 
+         OUT 
+         OUT 
+         BRZ END
+         BRP RESET
+END      HLT 
+NUM1     DAT 
+NUM2     DAT 
+ANS      DAT 0
+ZERO     DAT 0
+ONE      DAT 1

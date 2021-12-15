@@ -1,0 +1,18 @@
+         INP 
+         STA A
+         STA B
+MULTIPLY LDA ANS
+         ADD A
+         STA ANS
+         LDA B
+         SUB ONE
+         STA B
+         BRP MULTIPLY
+         LDA ANS
+         SUB A
+         OUT 
+         HLT 
+       A DAT 
+       B DAT 
+     ANS DAT 
+     ONE DAT 1

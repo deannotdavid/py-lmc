@@ -1,0 +1,6 @@
+INP
+STA A
+ADD A
+OUT
+HLT
+A DAT
