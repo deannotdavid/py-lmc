@@ -38,9 +38,15 @@ def get_program(filename) -> list[str]:
 				lines[index].insert(1, None)
 	return lines
 
+def refresh_memory(length):
+	global memory
+	memory = [[None, None] for _ in range(length)]
 
-def translate(lines: list[list[str]]) -> list[list[str]]:
-	assert len(lines) <= 99, f"Program is too long! {len(lines)} lines"
+
+def translate(lines: list[list[str]], mem_limit: bool=True) -> list[list[str]]:
+	assert len(lines) <= 99 or not mem_limit, f"Program is too long! {len(lines)} lines"
+	if not mem_limit:
+		refresh_memory(len(lines))
 	for index, line in enumerate(lines):
 		if line[1]:
 			jumps.append([line[0], line[1]])
@@ -91,8 +97,7 @@ def get_input() -> int:
 				raise ValueError
 			return inp
 		except ValueError:
-			print("Value not valid")
-
+			print("Invalid input")
 
 def run():
 	cir = 0
@@ -107,7 +112,6 @@ def run():
 		if type(pointing) is str:
 			pointing = int(pointing)
 		acc = int(acc)
-		# print(pointing)
 
 		if current_instruction == "ADD":
 			check_pointing(pointing, cir)
@@ -162,15 +166,33 @@ def run():
 		cir += 1
 
 
-def main(filename: str):
+def main(filename: str, mem_limit: bool=True):
 	# output_program(translate(get_program(filename)))
-	translate(get_program(filename))
+	translate(get_program(filename), mem_limit)
 	
-	load_to_memory(translate(get_program(filename)))
+	load_to_memory(translate(get_program(filename), mem_limit))
 	# prog = get_program("adder.txt")
 	# prog = translate(prog)
 	# load_to_memory(prog)
 	run()
 
+def arg_parser(items):
+	try:
+		filename = items[1]
+	except IndexError as e:
+		assert False, "File must be inputted"
+	if len(items) == 2:
+		main(filename)
+		return
+	flags = items[2:]
+	mem_limit = True
+	if "-nml" in flags:
+		mem_limit = False
+	main(filename, mem_limit=mem_limit)
+
+
+
 if __name__ == '__main__':
+	arg_parser(sys.argv)
+	quit()
 	main(sys.argv[1])

@@ -20,6 +20,10 @@ in the terminal, type `python lmc.py {filename}`
 
 example: `python lmc.py square.lmc`
 
+a max memory space of 99 is enforced by default. use flag `-nml` (no memory limit) to remove the limit.
+
+example: `python lmc.py toolong.lmc` would return an error, but `python lmc.py toolong.lmc -nml` will run.
+
 ## to format an lmc program:
 
 in the terminal, type `python lmcformatter.py {filename}`
