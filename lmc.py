@@ -38,6 +38,7 @@ def get_program(filename) -> list[str]:
 				lines[index].insert(1, None)
 	return lines
 
+
 def refresh_memory(length):
 	global memory
 	memory = [[None, None] for _ in range(length)]
@@ -98,6 +99,7 @@ def get_input() -> int:
 			return inp
 		except ValueError:
 			print("Invalid input")
+
 
 def run():
 	cir = 0
@@ -167,14 +169,10 @@ def run():
 
 
 def main(filename: str, mem_limit: bool=True):
-	# output_program(translate(get_program(filename)))
 	translate(get_program(filename), mem_limit)
-	
 	load_to_memory(translate(get_program(filename), mem_limit))
-	# prog = get_program("adder.txt")
-	# prog = translate(prog)
-	# load_to_memory(prog)
 	run()
+
 
 def arg_parser(items):
 	try:
@@ -191,8 +189,5 @@ def arg_parser(items):
 	main(filename, mem_limit=mem_limit)
 
 
-
 if __name__ == '__main__':
 	arg_parser(sys.argv)
-	quit()
-	main(sys.argv[1])
