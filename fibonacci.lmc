@@ -1,0 +1,15 @@
+      LDA A
+      OUT 
+      OUT 
+START LDA A
+      ADD B
+      STA C
+      OUT 
+      LDA B
+      STA A
+      LDA C
+      STA B
+      BRA START
+    A DAT 1
+    B DAT 1
+    C DAT 0

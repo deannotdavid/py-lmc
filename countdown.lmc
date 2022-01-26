@@ -1,0 +1,8 @@
+      INP 
+      STA A
+COUNT OUT 
+      SUB ONE
+      BRP COUNT
+      HLT 
+    A DAT 
+  ONE DAT 1
