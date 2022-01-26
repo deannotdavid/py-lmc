@@ -1,0 +1,22 @@
+         RND 
+         STA ANSWER
+NEWGUESS LDA GUESSES
+         ADD ONE
+         STA GUESSES
+         INP 
+         SUB ANSWER
+         BRZ WIN
+         BRP LOWER
+  HIGHER LDA ONE
+         OUT 
+         BRA NEWGUESS
+   LOWER LDA MINUSONE
+         OUT 
+         BRA NEWGUESS
+     WIN LDA GUESSES
+         OUT 
+         HLT 
+  ANSWER DAT 0
+ GUESSES DAT 0
+     ONE DAT 1
+MINUSONE DAT -1
