@@ -10,7 +10,9 @@ the lmc i learned in school can be accessed at https://peterhigginson.co.uk/lmc/
 
 while the example files use the extension .lmc, any text file will be accepted.
 
-NOTE: HLT statements are enforced in this implementation. please use HLT statements in your program to prevent errors
+HLT statements should be used if DAT statements are used. for example: a simple program such as `random.lmc` in the example files does not need one.
+
+comments are also not supported: they will raise an error if they are included in your code.
 
 # how to run:
 
